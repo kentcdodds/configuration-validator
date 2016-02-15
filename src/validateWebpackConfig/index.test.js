@@ -25,9 +25,7 @@ test('can fail', t => {
 
 test('can pass', t => {
   const contextStub = {
-    validators: [
-      {key: 'foo[0].boo', validate: () => undefined},
-    ],
+    validators: [getPassingValidator()],
   }
   const config = {foo: 'working stuff'}
   const result = validateWebpackConfig(config, contextStub)
@@ -37,8 +35,19 @@ test('can pass', t => {
 test(`doesn't check non-existing keys`, t => {
   const contextStub = {
     validators: [
-      {key: 'foo', validate: () => undefined},
-      {key: 'baz', validate: () => 'baz error'},
+      getPassingValidator({key: 'foo'}),
+      getFailingValidator({key: 'bar'}),
+    ],
+  }
+  const config = {foo: true}
+  const result = validateWebpackConfig(config, contextStub)
+  noErrors(t, result)
+})
+
+test(`doesn't check non-exsisting validators`, t => {
+  const contextStub = {
+    validators: [
+      getFailingValidator({key: 'baz'}),
     ],
   }
   const config = {foo: true}
@@ -49,3 +58,22 @@ test(`doesn't check non-existing keys`, t => {
 function noErrors(t, result) {
   t.true(result.length === 0)
 }
+
+function getFailingValidator(overrides) {
+  return {
+    key: 'failing.property',
+    validate: () => 'failed prop',
+    name: 'Always Failing Prop',
+    ...overrides,
+  }
+}
+
+function getPassingValidator(overrides) {
+  return {
+    key: 'passing.property',
+    validate: () => undefined,
+    name: 'Always Passing Prop',
+    ...overrides,
+  }
+}
+
