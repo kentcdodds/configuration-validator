@@ -1,4 +1,5 @@
 import test from 'ava'
+import {isMatch} from 'lodash'
 import validateWebpackConfig from '.'
 
 test('should default the API', t => {
@@ -7,20 +8,26 @@ test('should default the API', t => {
 
 test('can fail', t => {
   const contextStub = {
-    validators: {
-      foo: () => new Error('foo error'),
-    },
+    validators: [
+      {key: 'foo.bar.baz', validate: () => 'foo error', name: 'foo bar baz thing'},
+    ],
   }
-  const config = {foo: 'error stuff'}
+  const config = {foo: {bar: {baz: 'error stuff'}}}
   const result = validateWebpackConfig(config, contextStub)
-  t.true(result.foo instanceof Error)
+  const [item] = result
+  t.true(isMatch(item, {
+    key: 'foo.bar.baz',
+    message: 'foo error',
+    value: 'error stuff',
+    validatorName: 'foo bar baz thing',
+  }))
 })
 
 test('can pass', t => {
   const contextStub = {
-    validators: {
-      foo: () => undefined,
-    },
+    validators: [
+      {key: 'foo[0].boo', validate: () => undefined},
+    ],
   }
   const config = {foo: 'working stuff'}
   const result = validateWebpackConfig(config, contextStub)
@@ -29,10 +36,10 @@ test('can pass', t => {
 
 test(`doesn't check non-existing keys`, t => {
   const contextStub = {
-    validators: {
-      foo: () => undefined,
-      baz: () => new Error('baz error'),
-    },
+    validators: [
+      {key: 'foo', validate: () => undefined},
+      {key: 'baz', validate: () => 'baz error'},
+    ],
   }
   const config = {foo: true}
   const result = validateWebpackConfig(config, contextStub)
@@ -40,5 +47,5 @@ test(`doesn't check non-existing keys`, t => {
 })
 
 function noErrors(t, result) {
-  t.true(Object.keys(result).length === 0)
+  t.true(result.length === 0)
 }

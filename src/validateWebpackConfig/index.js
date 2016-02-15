@@ -1,21 +1,26 @@
 import {get, reduce, isUndefined, toPath, take} from 'lodash'
-import helper from '../helper'
 export default validateWebpackConfig
 
 function validateWebpackConfig(config = {}, {validators} = {}) {
-  return reduce(validators, getValidatorReducer(config), {})
+  return reduce(validators, getValidatorReducer(config), [])
 }
 
 function getValidatorReducer(config) {
-  return runValidator
+  return validatorReducer
 
-  function runValidator(accumulator, validator, key) {
-    const val = get(config, key)
-    if (!isUndefined(val)) {
+  function validatorReducer(accumulator, validator) {
+    const {key} = validator
+    const value = get(config, key)
+    if (!isUndefined(value)) {
       const context = getContext(config, key)
-      const result = validator(val, helper, context)
-      if (result) {
-        accumulator[key] = result
+      const message = validator.validate(value, context)
+      if (message) {
+        accumulator.push({
+          key,
+          message,
+          value,
+          validatorName: validator.name,
+        })
       }
     }
     return accumulator
