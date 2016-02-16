@@ -1,7 +1,9 @@
 import {get, reduce, isUndefined, toPath, take} from 'lodash'
-export default validateWebpackConfig
+import reformatResult from './reformatResult'
 
-function validateWebpackConfig(config = {}, {validators} = {}) {
+export default checkConfig
+
+function checkConfig(config, validators) {
   return reduce(validators, getValidatorReducer(config), [])
 }
 
@@ -13,13 +15,15 @@ function getValidatorReducer(config) {
     const value = get(config, key)
     if (!isUndefined(value)) {
       const context = getContext(config, key)
-      const message = validator.validate(value, context)
-      if (message) {
+      const result = validator.validate(value, context)
+      if (result) {
+        const {message, type} = reformatResult(result, validator)
         accumulator.push({
           key,
           message,
           value,
-          validatorName: validator.name,
+          validator,
+          type,
         })
       }
     }

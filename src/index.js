@@ -1,2 +1,9 @@
-throw new Error(`This is still in beta and I'm not sure how I want it to look yet...`)
+import configValidator from './configValidator'
+
+import checkConfig from './checkConfig'
+import messageFormatter from './messageFormatter'
+
+export default configValidator
+
+export {checkConfig, configValidator, messageFormatter}
 
