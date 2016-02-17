@@ -1,6 +1,6 @@
 {
   "name": "configuration-validator",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Validate your webpack configuration and save yourself hours of debugging time",
   "main": "dist/index.js",
   "files": [
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kentcdodds/webpack-validator.git"
+    "url": "git+https://github.com/kentcdodds/configuration-validator.git"
   },
   "keywords": [],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
