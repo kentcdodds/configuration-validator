@@ -6,7 +6,7 @@ but could be used to validate any configuration object.
 [![version](https://img.shields.io/npm/v/configuration-validator.svg?style=flat-square)](http://npm.im/configuration-validator)
 [![downloads](https://img.shields.io/npm/dm/configuration-validator.svg?style=flat-square)](http://npm-stat.com/charts.html?package=configuration-validator)
 [![MIT License](https://img.shields.io/npm/l/configuration-validator.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## Usage
 
