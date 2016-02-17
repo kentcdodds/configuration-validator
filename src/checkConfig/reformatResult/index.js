@@ -1,4 +1,4 @@
-import {isString, isObject} from 'lodash'
+import {isString, isPlainObject} from 'lodash'
 
 export default reformatResult
 
@@ -6,7 +6,7 @@ function reformatResult(result, {description, key} = {}) {
   /* eslint complexity:[2, 6] */
   if (isString(result)) {
     return {type: 'error', message: result}
-  } else if (isObject(result)) {
+  } else if (isPlainObject(result)) {
     if (result.error) {
       return {type: 'error', message: result.error}
     } else if (result.warning) {
