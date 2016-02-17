@@ -11,9 +11,7 @@ but could be used to validate any configuration object.
 ## Usage
 
 ```javascript
-// import the module one way or the other
-var configValidator = require('configuration-validator').configValidator // CommonJS
-import {configValidator} from 'configuration-validator' // ES6 modules
+var configValidator = require('configuration-validator')
 
 // call the function with your config and validators
 configValidator('Name of config', config, arrayOfValidators)
