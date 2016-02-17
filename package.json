@@ -19,7 +19,8 @@
     "lint": "eslint .",
     "test": "ava 'src/**/*.test.js' --verbose --require babel-register",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
-    "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s"
+    "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
+    "validate": "npm-run-all --parallel lint cover build --sequential check-coverage"
   },
   "repository": {
     "type": "git",
@@ -65,7 +66,7 @@
   "config": {
     "ghooks": {
       "commit-msg": "validate-commit-msg",
-      "pre-commit": "npm-run-all --parallel lint cover build --sequential check-coverage"
+      "pre-commit": "npm run validate -s"
     }
   }
 }
