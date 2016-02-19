@@ -1,9 +1,13 @@
 import checkConfig from '../checkConfig'
+import unknownFields from '../unknownFields'
 import messageFormatter from '../messageFormatter'
 
 export default configValidator
 
 function configValidator(configName, config, validators) {
+  const fieldWarnings = unknownFields(config, validators)
+  log(configName, messageFormatter(fieldWarnings).warning)
+
   const results = checkConfig(config, validators)
   if (results.length) {
     const {error, warning} = messageFormatter(results)
@@ -18,4 +22,3 @@ function log(configName, message) {
     console.log(`${configName}:\n${message}`) // eslint-disable-line no-console
   }
 }
-
