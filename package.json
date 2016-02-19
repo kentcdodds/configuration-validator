@@ -17,7 +17,9 @@
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "test": "ava 'src/**/*.test.js' --verbose --require babel-register",
+    "test": "ava 'src/**/*.test.js' --require babel-register",
+    "test:wip": "ava 'src/pathDiff/**/*.test.js' --require babel-register",
+    "watch:test:wip": "nodemon --quiet --watch src --exec npm run tmp -s",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
     "validate": "npm-run-all --parallel lint cover build --sequential check-coverage"
