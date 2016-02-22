@@ -14,7 +14,7 @@ test('returns an empty array for non-plain object', t => {
   t.true(result.length === 0)
 })
 
-test.skip('paths for an object with only primative properties returns a simple array', t => {
+test('paths for an object with only primative properties returns a simple array', t => {
   const input = {
     a: 'hi',
     b: true,
@@ -27,7 +27,7 @@ test.skip('paths for an object with only primative properties returns a simple a
   ]))
 })
 
-test.skip('paths for an object with deep properties returns an array of the deepest of all properties', t => {
+test('paths for an object with deep properties returns an array of the deepest of all properties', t => {
   const input = {
     level1: {
       level2: {
@@ -49,7 +49,7 @@ test.skip('paths for an object with deep properties returns an array of the deep
   ]))
 })
 
-test.skip('stops at arrays', t => {
+test('stops at arrays', t => {
   const input = {
     level1: {
       level2: {
@@ -81,7 +81,7 @@ test.skip('stops at arrays', t => {
   ]))
 })
 
-test.skip('handles recursive structures without blowing up', t => {
+test('handles recursive structures without blowing up', t => {
   const input1 = {}
   const input2 = {input1}
   input1.input2 = input2
