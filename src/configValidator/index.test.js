@@ -27,7 +27,6 @@ test('unknown fields', t => {
   const config = {bar: 'baz', cat: 'bag'}
   const validators = [{key: 'bar', validate: () => 'error'}]
   configValidator('Webpack Config', config, validators)
-  t.true(console.log.calledTwice)
   t.true(console.log.calledWithMatch(/Webpack Config[\s\S]*?bar[\s\S]*?error/))
   cleanUp()
 })
