@@ -12,11 +12,12 @@ function getAllPaths(object, base = '', visited = []) {
     if (alreadyVisited) {
       return key
     }
-    visited.push(val)
     const path = base ? `${base}.${key}` : key
     if (!isPlainObject(val)) {
       return path
     }
+
+    visited.push(val) // only add visited to plain objects
     return getAllPaths(object[key], path, visited)
   })
   return flatten(paths)

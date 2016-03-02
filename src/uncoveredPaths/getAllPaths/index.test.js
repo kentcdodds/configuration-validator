@@ -89,3 +89,28 @@ test('handles recursive structures without blowing up', t => {
   t.true(isEqual(result, ['input2']))
 })
 
+/*
+ * Tests below here are used to fix bugs (and keep them from coming back)
+ */
+test(`objects with keys who's values are the same as other keys`, t => {
+  const input = {
+    externals: {
+      angular: 'angular',
+      'api-check': {
+        root: 'apiCheck',
+        amd: 'api-check',
+        commonjs2: 'api-check',
+        commonjs: 'api-check',
+      },
+    },
+  }
+  const result = getAllPaths(input)
+  t.true(isEqual(result, [
+    'externals.angular',
+    'externals.api-check.root',
+    'externals.api-check.amd',
+    'externals.api-check.commonjs2',
+    'externals.api-check.commonjs',
+  ]))
+})
+
