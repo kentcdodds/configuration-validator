@@ -15,6 +15,6 @@ function messageReducer(string, {key, message, type}, index, array) {
   const highlight = type === 'error' ? 'red' : 'yellow'
   const keyPart = chalk.bold[highlight](`${key}`)
   const messagePart = chalk.gray(message)
-  return `${string}${newline}${keyPart}: ${messagePart}`
+  return `${string}${newline}${keyPart}: ${messagePart}\n`
 }
 

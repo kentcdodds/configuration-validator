@@ -28,7 +28,6 @@ function getWarningsForUncoveredFields(config, validators) {
 
 function log(configName, message) {
   if (message) {
-    message = message.replace(/\n/g, '\n\t')
     console.log(`${configName}:\n${message}`) // eslint-disable-line no-console
   }
 }
