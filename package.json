@@ -1,6 +1,6 @@
 {
   "name": "configuration-validator",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "description": "Validate your webpack configuration and save yourself hours of debugging time",
   "main": "dist/index.js",
   "files": [
@@ -20,7 +20,10 @@
     "test": "ava 'src/**/*.test.js' --require babel-register",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
-    "validate": "npm-run-all --parallel lint cover build --sequential check-coverage"
+    "validate": "npm-run-all --parallel lint cover build --sequential check-coverage",
+    "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
+    "release:beta": "npm run release && npm run tag:beta",
+    "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
   },
   "repository": {
     "type": "git",
@@ -52,7 +55,8 @@
     "nyc": "5.6.0",
     "rimraf": "2.5.2",
     "sinon": "1.17.3",
-    "validate-commit-msg": "2.0.0"
+    "validate-commit-msg": "2.0.0",
+    "with-package": "0.2.0"
   },
   "eslintConfig": {
     "extends": "kentcdodds"
