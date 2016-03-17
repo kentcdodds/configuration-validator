@@ -47,7 +47,7 @@ test('can warn', t => {
   }))
 })
 
-test(`doesn't check non-existing keys`, t => {
+test('doesnot check non-existing keys', t => {
   const validators = [
     getPassingValidator({key: 'foo'}),
     getFailingValidator({key: 'bar'}),
@@ -57,7 +57,7 @@ test(`doesn't check non-existing keys`, t => {
   noErrors(t, result)
 })
 
-test(`doesn't check non-exsisting validators`, t => {
+test('doesnot check non-exsisting validators', t => {
   const validators = [
     getFailingValidator({key: 'baz'}),
   ]

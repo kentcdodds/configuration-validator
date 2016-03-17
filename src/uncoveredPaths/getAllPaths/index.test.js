@@ -92,7 +92,7 @@ test('handles recursive structures without blowing up', t => {
 /*
  * Tests below here are used to fix bugs (and keep them from coming back)
  */
-test(`objects with keys who's values are the same as other keys`, t => {
+test('objects with keys who\'s values are the same as other keys', t => {
   const input = {
     externals: {
       angular: 'angular',
