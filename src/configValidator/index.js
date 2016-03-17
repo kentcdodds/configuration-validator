@@ -4,14 +4,18 @@ import messageFormatter from '../messageFormatter'
 
 export default configValidator
 
-function configValidator(configName, config, validators) {
+function configValidator(config, validators) {
   const uncoveredFields = getWarningsForUncoveredFields(config, validators)
   const results = checkConfig(config, validators)
   const totalResults = uncoveredFields.concat(results)
   if (totalResults.length) {
     const {error, warning} = messageFormatter(totalResults)
-    log(configName, error)
-    log(configName, warning)
+    log(error)
+    log(warning)
+    return {
+      warnings: uncoveredFields.length,
+      errors: results.length,
+    }
   }
 }
 
@@ -26,8 +30,8 @@ function getWarningsForUncoveredFields(config, validators) {
     })
 }
 
-function log(configName, message) {
+function log(message) {
   if (message) {
-    console.log(`${configName}:\n${message}`) // eslint-disable-line no-console
+    console.log(message) // eslint-disable-line no-console
   }
 }
