@@ -1,6 +1,6 @@
 import test from 'ava'
 import {isEqual} from 'lodash'
-import getAllPaths from '.'
+import getAllPaths from './index'
 
 test('paths for an empty object returns an empty array', t => {
   const input = {}
