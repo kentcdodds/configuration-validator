@@ -1,6 +1,6 @@
 import test from 'ava'
 import {isMatch} from 'lodash'
-import reformatResult from '.'
+import reformatResult from './index'
 
 test('throws an error with a result of the incorrect type', t => {
   const resultStub = false

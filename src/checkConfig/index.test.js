@@ -1,6 +1,6 @@
 import test from 'ava'
 import {isMatch} from 'lodash'
-import checkConfig from '.'
+import checkConfig from './index'
 
 test('can fail', t => {
   const validators = [

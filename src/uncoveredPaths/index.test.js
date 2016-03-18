@@ -1,5 +1,5 @@
 import test from 'ava'
-import pathDiff from '.'
+import pathDiff from './index'
 
 const coveredPaths = [
   {

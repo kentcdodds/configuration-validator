@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 import test from 'ava'
 import sinon from 'sinon'
-import configValidator from '.'
+import configValidator from './index'
 
 let originalConsole
 

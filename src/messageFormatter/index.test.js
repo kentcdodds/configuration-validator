@@ -1,5 +1,5 @@
 import test from 'ava'
-import messageFormatter from '.'
+import messageFormatter from './index'
 
 test('formats messages for errors', t => {
   const results = [
