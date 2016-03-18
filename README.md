@@ -3,6 +3,8 @@
 Built as the pluggable validator for [webpack-validator](https://github.com/kentcdodds/webpack-validator)
 but could be used to validate any configuration object.
 
+[![Build Status](https://img.shields.io/travis/kentcdodds/configuration-validator.svg?style=flat-square)](https://travis-ci.org/kentcdodds/configuration-validator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/kentcdodds/configuration-validator.svg?style=flat-square)](https://codecov.io/github/kentcdodds/configuration-validator)
 [![version](https://img.shields.io/npm/v/configuration-validator.svg?style=flat-square)](http://npm.im/configuration-validator)
 [![downloads](https://img.shields.io/npm/dm/configuration-validator.svg?style=flat-square)](http://npm-stat.com/charts.html?package=configuration-validator)
 [![MIT License](https://img.shields.io/npm/l/configuration-validator.svg?style=flat-square)](http://opensource.org/licenses/MIT)
