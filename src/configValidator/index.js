@@ -6,10 +6,10 @@ import formatMessagesAsString from '../formatMessagesAsString'
 export default configValidator
 
 function configValidator(configName, config, validators) {
-  const uncoveredFieldsMessages = getWarningMessagesForUncoveredFields(config, validators)
-  const validationMessages = checkConfig(config, validators)
-  const messages = [...uncoveredFieldsMessages, ...validationMessages]
-  const {warning: warnings = [], error: errors = []} = groupBy(messages, 'type')
+  const uncoveredFieldsWarnings = getWarningsForUncoveredFields(config, validators)
+  const validationWarningsAndErrors = checkConfig(config, validators)
+  const warningsAndErrors = [...uncoveredFieldsWarnings, ...validationWarningsAndErrors]
+  const {warning: warnings = [], error: errors = []} = groupBy(warningsAndErrors, 'type')
 
   return {
     errors,
@@ -19,7 +19,7 @@ function configValidator(configName, config, validators) {
   }
 }
 
-function getWarningMessagesForUncoveredFields(config, validators) {
+function getWarningsForUncoveredFields(config, validators) {
   return uncoveredPaths(config, validators)
     .map(uncoveredPath => {
       return {
