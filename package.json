@@ -15,12 +15,12 @@
     "precommit": "npm-run-all --parallel lint cover build --sequential check-coverage",
     "prebuild": "rimraf dist",
     "build": "babel -d dist src",
-    "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava \"src/**/*.test.js\" --require babel-register",
+    "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
     "lint": "eslint .",
-    "test": "ava \"src/**/*.test.js\" --require babel-register",
-    "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
+    "test": "ava",
+    "watch:test": "ava -w",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
     "validate": "npm-run-all --parallel lint cover build --sequential check-coverage",
     "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
@@ -75,5 +75,18 @@
       "commit-msg": "validate-commit-msg",
       "pre-commit": "npm run precommit"
     }
+  },
+  "ava": {
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "source": [
+      "./src/**/*.js",
+      "!dist/**/*"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
